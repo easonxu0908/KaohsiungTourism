@@ -2720,11 +2720,27 @@ function renderPage() {
         if (totoalPage > 0) {
             let nbrHtml = '';
             for (let i = 0; i < totoalPage; i++) {
-                let tempNbr = `<li ><a  href="#" data-page="${(i + 1)}">${(i + 1)}</a> </li>`;
+                let tempNbr = `<li ><a  href="#" data-page="${i +
+                    1}" class="pages">${i + 1}</a> </li>`;
                 nbrHtml += tempNbr;
             }
             pagination.innerHTML = prevPage + nbrHtml + nexPage;
         }
+    }
+    let pages = document.querySelectorAll('.pages');
+    console.log(pages);
+    console.log(currentPage);
+    let page;
+    for (let index = 0; index < pages.length; index++) {
+        page = pages[index];
+        // console.log(page.dataset.page);
+        if (currentPage == page.dataset.page) {
+            // console.log('yes');
+            console.log(page);
+            page.style.backgroundColor = "green";
+            return page;
+        }
+        // 當目前的頁面與 pata-page 相同時，就將該按鈕上色
     }
 }
 
@@ -2736,6 +2752,7 @@ function renderContent(goPage) {
 
     // document.querySelector('.fotter').style.display = '';
 
+    //總資料筆數
     totalItem = data.length;
 
     // 當沒有查詢到資料的時候
@@ -3139,9 +3156,9 @@ $(document).ready(function () {
     // 滑動回頁首 end
 
 
-    $('button').on('click', function () {
-        console.log(1949);
-    });
+    // $('button').on('click', function () {
+    //     console.log(1949);
+    // });
 
 
 })
